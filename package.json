@@ -1,0 +1,14 @@
+{
+  "name": "vxhubs-bot",
+  "version": "0.0.1",
+  "description": "A custom bot for controlling a Mozilla Hubs room",
+  "main": "index.js",
+  "author": "Ben Grant",
+  "private": true,
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "puppeteer": "^13.0.0"
+  }
+}

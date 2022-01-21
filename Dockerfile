@@ -39,7 +39,6 @@ ENV INSTALL /home/pptruser
 WORKDIR $INSTALL
 
 COPY src $INSTALL/src
-COPY demos $INSTALL/demos
 COPY config.json $INSTALL
 COPY package.json $INSTALL
 COPY index.js $INSTALL
@@ -50,5 +49,9 @@ RUN echo 'kernel.unprivileged_userns_clone=1' > /etc/sysctl.d/userns.conf
 RUN chown -R pptruser /home/pptruser
 
 USER pptruser
-
+WORKDIR $INSTALL
 RUN npm i 
+
+USER pptruser
+WORKDIR $INSTALL
+COPY demos $INSTALL/demos

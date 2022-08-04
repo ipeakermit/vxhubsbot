@@ -7,9 +7,10 @@ import ROSLIB from 'roslib'
 // Demos
 import proximityDoors from './demos/proximityDoors.js'
 import imageSequence from './demos/imageSequence.js'
-import rosie from './demos/rosie.js'
+//import rosie from './demos/rosie.js'
+import loadFireExt from './demos/fireExt.js'
 
-const config = JSON.parse(fs.readFileSync('./config.json'))
+const config = JSON.parse(fs.readFileSync('./vxlab_config.json'))
 
 // Login and set the bot name
 const login = async () => {
@@ -18,9 +19,9 @@ const login = async () => {
   console.log('connected!')
 
   // Run demos
-  await rosie(page)
-  await proximityDoors(page)
-  await imageSequence(page)
+  await loadFireExt(page)
+  //await imageSequence(page)
+  //await proximityDoors(page)
 }
 
 login()

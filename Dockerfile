@@ -26,6 +26,7 @@ RUN apt-get update \
 # Install puppeteer so it's available in the container.
 RUN npm init -y &&  \
     npm i puppeteer \
+    npm i hubs-client-bot \
     # Add user so we don't need --no-sandbox.
     # same layer as npm install to keep re-chowned files from using up several hundred MBs more space
     && groupadd -r pptruser && useradd -r -g pptruser -G audio,video pptruser \
@@ -39,9 +40,7 @@ ENV INSTALL /home/pptruser
 WORKDIR $INSTALL
 
 COPY src $INSTALL/src
-COPY config.json $INSTALL
 COPY package.json $INSTALL
-COPY index.js $INSTALL
 
 # https://github.com/puppeteer/puppeteer/issues/3451
 RUN echo 'kernel.unprivileged_userns_clone=1' > /etc/sysctl.d/userns.conf
@@ -55,3 +54,5 @@ RUN npm i
 USER pptruser
 WORKDIR $INSTALL
 COPY demos $INSTALL/demos
+COPY *config.json $INSTALL/
+COPY *.js $INSTALL/

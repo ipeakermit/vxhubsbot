@@ -1,8 +1,10 @@
 const proximityDoors = async page => {
+  console.log('proximityDoors')
   // Run code in hubs page
   const interval = await page.evaluate(() => {
     // Function to load assets
     const loadAssetsFromURLs = URLs => URLs.map(src => {
+      console.log('loadAssetsFromURLs')
       let object = document.createElement('a-entity')
       AFRAME.scenes[0].append(object)
       object.setAttribute('media-loader', { src, fitToBox: true, resolve: true })
@@ -18,9 +20,11 @@ const proximityDoors = async page => {
     doors[1].setAttribute('position', '4 1 0')
 
     let open = false
+    console.log('open var init...')
 
     // Constantly check if any users are less than 2 meters away from either door
     const checkPosition = () => {
+      console.log('checkPosition')
       const proximity = Array.from(document.querySelectorAll('[networked-avatar]')).some(avatar => avatar.getAttribute('position').distanceTo(doors[0].getAttribute('position')) < 2 || avatar.getAttribute('position').distanceTo(doors[1].getAttribute('position')) < 2)
       if (proximity && !open) {
         open = true
@@ -45,7 +49,8 @@ const proximityDoors = async page => {
     }
 
     // Check player positions every 200 milliseconds
-    return window.setInterval(checkPosition, 200)
+    console.log('checkPosition loop launch...',window)
+    return window.setInterval(checkPosition, 2000)
   })
 }
 

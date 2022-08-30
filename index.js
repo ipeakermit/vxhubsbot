@@ -18,9 +18,9 @@ const login = async () => {
   console.log('connected!')
 
   // Run demos
-  await rosie(page)
+  //await rosie(page)
   await proximityDoors(page)
-  await imageSequence(page)
+  //await imageSequence(page)
 }
 
 login()

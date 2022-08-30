@@ -51,8 +51,12 @@ USER pptruser
 WORKDIR $INSTALL
 RUN npm i 
 
+USER root
+RUN apt update && apt install sudo
+
 USER pptruser
 WORKDIR $INSTALL
 COPY demos $INSTALL/demos
 COPY *config.json $INSTALL/
 COPY *.js $INSTALL/
+

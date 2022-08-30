@@ -1,5 +1,5 @@
 const proximityDoors = async page => {
-  console.log('proximityDoors')
+  console.log('proximityDoors ---')
   // Run code in hubs page
   const interval = await page.evaluate(() => {
     // Function to load assets
@@ -52,6 +52,7 @@ const proximityDoors = async page => {
     console.log('checkPosition loop launch...',window)
     return window.setInterval(checkPosition, 2000)
   })
+  console.log("proximityDoors done")
 }
 
 export default proximityDoors

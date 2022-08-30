@@ -2,7 +2,8 @@
 
 // https://github.com/zach-capalbo/hubs-client-bot
 
-const {HubsBot} = require('hubs-client-bot')
+//const {HubsBot} = require('hubs-client-bot')
+const {HubsBot} = import('hubs-client-bot')
 
 function adjustAllPlanks() {
   var startOffset = -7.5;
@@ -45,5 +46,7 @@ async function runBot() {
   await bot.say("Placed stethoscope");
   await bot.page.evaluate(() => {
     console.log("hello");
+  });
+}
 
 runBot()

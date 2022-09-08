@@ -15,19 +15,10 @@ const config = JSON.parse(fs.readFileSync('./config.json'))
 
 // Login and set the bot name
 const login = async () => {
-  console.log("=============================")
-  const page = await startBrowser(config.roomURL)
-  await page.evaluate(setName, config.botName ?? 'VXBot')
-  console.log(textWithColor('setup done.\n', ANSIColor.Green));
+  let text = "Index.js has no functionality.\n"
+  text += "Use the demo runner script ./run_demos.\n"
 
-  // forward puppeteer logs to here
-  routeLogsToContainer(page)
-  
-  // Run demo
-  await proximityDoors(page)
-
-  //await rosie(page)
-  //await imageSequence(page)
+  console.log(textWithColor(text, ANSIColor.Green));
 }
 
 

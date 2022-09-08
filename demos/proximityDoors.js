@@ -1,3 +1,5 @@
+//var anime = require("animejs").default;
+
 const proximityDoors = async page => {
   console.log('Running proximity door demo...')
 
@@ -49,29 +51,33 @@ const proximityDoors = async page => {
       //    AFRAME.ANIME is deprecated as of: https://github.com/MozillaReality/aframe/commit/ced136f8f76e96ecb08ec31f966a55c78d83b7b1
       //    find a work around to reimplement animations in a way that hopefuly also won't become deprecated
 
-      // const proximity = avatars.some(a => a.getAttribute('position').distanceTo(doors[0].getAttribute('position')) < 2 || a.getAttribute('position').distanceTo(doors[1].getAttribute('position')) < 2.0)
-      // if (proximity && !open) {
-      //   console.log("opening doors.")
-      //   open = true
+      /*
+      const proximity = avatars.some(a => a.getAttribute('position').distanceTo(doors[0].getAttribute('position')) < 2 || a.getAttribute('position').distanceTo(doors[1].getAttribute('position')) < 2.0)
+      if (proximity && !open) {
+        console.log("opening doors.")
+        open = true
 
-      //   const door0Anim = AFRAME.ANIME.default.timeline({ targets: doors[0].object3D.position, autoplay: false })
-      //   const door1Anim = AFRAME.ANIME.default.timeline({ targets: doors[1].object3D.position, autoplay: false })
-      //   door0Anim.add({ x: 2.5, y: 1, z: 0 })
-      //   door1Anim.add({ x: 4.5, y: 1, z: 0 })
-      //   door0Anim.restart()
-      //   door1Anim.restart()
-      // }
-      // if (!proximity && open) {
-      //   console.log("closing doors.")
-      //   open = false
-      //   // Close the doors
-      //   const door0Anim = AFRAME.ANIME.default.timeline({ targets: doors[0].object3D.position, autoplay: false })
-      //   const door1Anim = AFRAME.ANIME.default.timeline({ targets: doors[1].object3D.position, autoplay: false })
-      //   door0Anim.add({ x: 3, y: 1, z: 0 })
-      //   door1Anim.add({ x: 4, y: 1, z: 0 })
-      //   door0Anim.restart()
-      //   door1Anim.restart()
-      // }
+        const door0Anim = anime.timeline({ targets: doors[0].object3D.position, autoplay: false })
+        const door1Anim = anime.timeline({ targets: doors[1].object3D.position, autoplay: false })
+        door0Anim.add({ x: 2.5, y: 1, z: 0 })
+        door1Anim.add({ x: 4.5, y: 1, z: 0 })
+        door0Anim.restart()
+        door1Anim.restart()
+      }
+      if (!proximity && open) {
+        console.log("closing doors.")
+        open = false
+        // Close the doors
+        const door0Anim = AFRAME.ANIME.default.timeline({ targets: doors[0].object3D.position, autoplay: false })
+        const door1Anim = AFRAME.ANIME.default.timeline({ targets: doors[1].object3D.position, autoplay: false })
+        door0Anim.add({ x: 3, y: 1, z: 0 })
+        door1Anim.add({ x: 4, y: 1, z: 0 })
+        door0Anim.restart()
+        door1Anim.restart()
+      }
+      */
+
+
     }
 
     // Check player positions every 200 milliseconds

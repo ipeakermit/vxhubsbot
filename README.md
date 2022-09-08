@@ -12,6 +12,20 @@ Note that currently, if a player grabs any of the objects controlled by the bot,
 ## Running the bot
 
 1. Clone this repository onto your local machine.
-2. Create a file called `config.json` based off `config.example.json` and fill out the details.
+2. Modify the file called `config.json` with the desired room url for the bot to join.
 3. Run `yarn` to install the dependencies. (you can also use `npm i` if you don't have yarn installed)
-4. Run `yarn start` or `npm run start` to start the bot. It should output it's progress and any errors in the console.
+4. Run `./run_demos` and choose a demo to launch. It should output it's progress and any errors in the console.
+
+```
+Current demos
+    1. Proximity doors (Works)
+    2. Rosie (?)
+    3. Image sequence (?)
+    4. Slide Deck (WIP)
+    5. Fire Exit (?)
+```
+
+
+## Current issues to resolve
+
+1. AFRAME.ANIME is deprecated as of: https://github.com/MozillaReality/aframe/commit/ced136f8f76e96ecb08ec31f966a55c78d83b7b1

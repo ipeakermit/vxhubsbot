@@ -31,20 +31,20 @@ function describe(jsHandle) {
 
 // bind console output for startBrowser() page
 export function routeLogsToContainer(page) {
-  page.on('console', msg => {
-    console.log(textWithColor("console:", ANSIColor.Cyan), msg.text())
-  });
-  // page.on('console', async msg => {
-  //   const args = await Promise.all(msg.args().map(arg => describe(arg)))
-  //   console.log(textWithColor("console:", ANSIColor.Cyan), msg.text(), ...args);
+  // page.on('console', msg => {
+  //   console.log(textWithColor("console:", ANSIColor.Cyan), msg.text())
   // });
+  page.on('console', async msg => {
+    const args = await Promise.all(msg.args().map(arg => describe(arg)))
+    console.log(textWithColor("console:", ANSIColor.Cyan), msg.text(), ...args);
+  });
 
   page.on('pageerror', error => {
     console.log(textWithColor("page error:", ANSIColor.Red), error.message);
   });
-  page.on('response', response => {
-    console.log(textWithColor("response:", ANSIColor.Purple), response.status(), response.url());
-  });
+  // page.on('response', response => {
+  //   console.log(textWithColor("response:", ANSIColor.Purple), response.status(), response.url());
+  // });
   page.on('requestfailed', request => {
     console.log(textWithColor("requestfailed:", ANSIColor.Yellow), request.failure().errorText, request.url());
   });

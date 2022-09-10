@@ -22,17 +22,20 @@ const proximityDoors = async page => {
     let doors = loadAssetsFromURLs([door_model_url, door_model_url])
     doors[0].setAttribute('scale', '3 3 3')
     doors[1].setAttribute('scale', '3 3 3')
-    doors[0].setAttribute('position', '3 1 0')
-    doors[1].setAttribute('position', '4 1 0')
+    doors[0].setAttribute('position', '3.5 1 -1')
+    doors[1].setAttribute('position', '3.5 1 -0.25')
+    doors[0].setAttribute('rotation', '0 90 0')
+    doors[1].setAttribute('rotation', '0 90 0')
 
     let open = false
 
     // Constantly check if any users are less than 2 meters away from either door
     const checkPosition = () => {
-      console.log('checking avatar door proximity:')
+      //console.log('prox tick')
       const avatars = Array.from(document.querySelectorAll('[networked-avatar]'))
       //console.log(`there are ${avatars.length} avatar(s) loaded in the scene.`)
 
+      let doors_activated = false;
       avatars.forEach((a, i)=>{
         let posObj = a.getAttribute('position')
         let pos = `(${posObj.x.toFixed(2)}, ${posObj.y.toFixed(2)}, ${posObj.z.toFixed(2)})`
@@ -42,10 +45,26 @@ const proximityDoors = async page => {
 
 
         let dist = posObj.distanceTo(doors[0].getAttribute('position'))
+        if (dist < 2){doors_activated = true}
 
-        console.log(` [User ${i+1}] distance: ${dist.toFixed(4)}`);
+        //console.log(` [User ${i+1}] distance: ${dist.toFixed(4)}`);
       });
 
+      // Open the doors
+      if (doors_activated && !open) {
+        console.log("opening doors.")
+        open = true
+        doors[0].setAttribute('position', '3.5 1 -1.75')
+        doors[1].setAttribute('position', '3.5 1  0.5')
+      }
+
+      // Close the doors
+      if (!doors_activated && open) {
+        console.log("closing doors.")
+        open = false
+        doors[0].setAttribute('position', '3.5 1 -1')
+        doors[1].setAttribute('position', '3.5 1 -0.25')
+      }
 
       //  TODO: 
       //    AFRAME.ANIME is deprecated as of: https://github.com/MozillaReality/aframe/commit/ced136f8f76e96ecb08ec31f966a55c78d83b7b1
@@ -82,7 +101,7 @@ const proximityDoors = async page => {
 
     // Check player positions every 200 milliseconds
     console.log('checkPosition loop launch...',window)
-    return window.setInterval(checkPosition, 2000)
+    return window.setInterval(checkPosition, 500)
   })
 }
 

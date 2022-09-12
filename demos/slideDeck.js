@@ -12,7 +12,10 @@ const slideDeck = async page => {
     let helix_url = 'https://sketchfab.com/3d-models/a-dna-sticks-model-74e4602a8c544a12a64d1bac160ee1c6'
     let lab_machine = 'https://sketchfab.com/3d-models/machine-lab-02097b72cb764df79f0188df985014a5'
     let c2_h4_o3 = 'https://sketchfab.com/3d-models/chem1-c2-h4-o3-2ec7a5d11d2545c094df5c17ab37c2af'
-    let mr_molecule = 'https://sketchfab.com/3d-models/mr-molecule-74d0dfa9d38e407db286eb8d10eba496';
+    // let mr_molecule = 'https://sketchfab.com/3d-models/mr-molecule-74d0dfa9d38e407db286eb8d10eba496';
+    let bucky_ball = 'https://sketchfab.com/3d-models/buckyball-22d563fc2e4e4dda9bdb1f9dfaacb150';
+    let graphine = 'https://sketchfab.com/3d-models/graphene-14ff4c51d42743f88b69efed79f373b1';
+    let bn_nanotube = 'https://sketchfab.com/3d-models/bn-nanotube-833e0a21357b4b6f843e9c010be7ff30';
 
     
     // Bot speak function
@@ -49,7 +52,7 @@ const slideDeck = async page => {
     // }
     const loadSlide1 = () => {
       say("slide 1/3");
-      slide_deck[0] = loadAssetsFromURLs([c2_h4_o3])
+      slide_deck[0] = loadAssetsFromURLs([bucky_ball])
       slide_deck[0][0].setAttribute('scale', '4 4 4')
       slide_deck[0][0].setAttribute('position', '-1.7 1.5 0')
       slide_deck[0][0].setAttribute('rotation', '0 90 0')
@@ -59,19 +62,19 @@ const slideDeck = async page => {
     // 
     const loadSlide2 = () => {
       say("slide 2/3");
-      slide_deck[1] = loadAssetsFromURLs([helix_url])
+      slide_deck[1] = loadAssetsFromURLs([graphine])
       slide_deck[1][0].setAttribute('scale', '10 10 10')
       slide_deck[1][0].setAttribute('position', '-1.7 1 0')
-      slide_deck[1][0].setAttribute('rotation', '90 0 0')
+      slide_deck[1][0].setAttribute('rotation', '0 0 0')
 
     }
 
     const loadSlide3 = () => {
       say("slide 3/3");
-      slide_deck[2] = loadAssetsFromURLs([lab_machine])
-      slide_deck[2][0].setAttribute('scale', '3 3 3')
-      slide_deck[2][0].setAttribute('position', '3 1 1')
-      slide_deck[2][0].setAttribute('rotation', '0 270 0')
+      slide_deck[2] = loadAssetsFromURLs([bn_nanotube])
+      slide_deck[2][0].setAttribute('scale', '10 10 10')
+      slide_deck[2][0].setAttribute('position', '-1.7 1 0')
+      slide_deck[2][0].setAttribute('rotation', '0 0 0')
     }
 
     // Remove objects in slide n

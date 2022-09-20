@@ -36,7 +36,6 @@ export const quizBot = async page => {
       var body = ''
       request.on('data', function(data) {
         body += data
-        //console.log('Partial body: ' + body)
       })
       request.on('end', function() {
         let formData = body.split("&");
@@ -48,8 +47,10 @@ export const quizBot = async page => {
           console.log(`${i}: ${formData[i]}`)
         }
 
+        let html = fs.readFileSync('./demos/quiz1_done.html')
+        //html = html.replace("ANSWER", result)
         response.writeHead(200, {'Content-Type': 'text/html'})
-        response.end(`Answer correct = ${result}. Please return to the hub.`)
+        response.end(html)
 
         ping(page, formData);
       })
@@ -57,7 +58,8 @@ export const quizBot = async page => {
 
       
     } else {
-      console.log('GET')
+      console.log(`GET on path: ${request.path}`)
+
       var html = "";
       html = fs.readFileSync('./demos/quiz1.html')
 
@@ -92,7 +94,7 @@ export const quizBot = async page => {
     quizes[1].setAttribute('rotation', '0 0 0')
   })
 
-  //create box
+  //create quiz results bar
   // cubes = await page.evaluate(() => {
 
   //   // Function to load assets

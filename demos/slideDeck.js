@@ -54,7 +54,7 @@ const slideDeck = async page => {
       say("slide 1/3");
       slide_deck[0] = loadAssetsFromURLs([bucky_ball])
       slide_deck[0][0].setAttribute('scale', '4 4 4')
-      slide_deck[0][0].setAttribute('position', '-1.7 1.5 0')
+      slide_deck[0][0].setAttribute('position', '2 2 2')
       slide_deck[0][0].setAttribute('rotation', '0 90 0')
 
     }
@@ -64,7 +64,7 @@ const slideDeck = async page => {
       say("slide 2/3");
       slide_deck[1] = loadAssetsFromURLs([graphine])
       slide_deck[1][0].setAttribute('scale', '10 10 10')
-      slide_deck[1][0].setAttribute('position', '-1.7 1 0')
+      slide_deck[1][0].setAttribute('position', '2 2 2')
       slide_deck[1][0].setAttribute('rotation', '0 0 0')
 
     }
@@ -73,7 +73,7 @@ const slideDeck = async page => {
       say("slide 3/3");
       slide_deck[2] = loadAssetsFromURLs([bn_nanotube])
       slide_deck[2][0].setAttribute('scale', '10 10 10')
-      slide_deck[2][0].setAttribute('position', '-1.7 1 0')
+      slide_deck[2][0].setAttribute('position', '2 2 2')
       slide_deck[2][0].setAttribute('rotation', '0 0 0')
     }
 

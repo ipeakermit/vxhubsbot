@@ -27,6 +27,11 @@ then
         echo "Fire Exit demo currently under development"
         ./build && docker run --cap-add=SYS_ADMIN -it vxbot npm run demo_picker $1
         ;;
+    6 | "quiz" )
+        echo "Running QuizBot demo"
+        # forward host traffic from port 8080 to container internal port 3000
+        ./build && docker run --cap-add=SYS_ADMIN -it -p 8080:3000 vxbot npm run demo_picker $1
+        ;;
 
     *)
         echo "usage: $0 [demo-name OR demo-number]"
@@ -37,6 +42,7 @@ then
         echo "3. Image sequence"
         echo "4. Slide Deck (WIP)"
         echo "5. Fire Exit"
+        echo "6. QuizBot"
         ;;
     esac
 else
@@ -49,4 +55,5 @@ else
     echo "3. Image sequence"
     echo "4. Slide Deck (WIP)"
     echo "5. Fire Exit"
+    echo "6. QuizBot"
 fi

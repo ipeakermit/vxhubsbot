@@ -11,6 +11,9 @@ import rosie from './demos/rosie.js'
 import loadFireExt from './demos/fireExt.js'
 import slideDeck from './demos/slideDeck.js'
 
+import {quizBot} from './demos/quizBot.js'
+//import { IPC } from "puppeteer-ipc/dist/lib/main.js";
+
 import { ANSIColor, textWithColor, routeLogsToContainer } from './puppet_logging.js'
 
 const config = JSON.parse(fs.readFileSync('./config.json'))
@@ -21,6 +24,10 @@ const selectDemo = async () => {
   console.log("=============================")
   const page = await startBrowser(config.roomURL)
   await page.evaluate(setName, config.botName ?? 'VXBot')
+
+  // start inter-process comms
+  // const ipc = new IPC(page);
+  // await ipc.start();
 
   console.log(textWithColor('setup done.\n', ANSIColor.Green));
 
@@ -45,6 +52,9 @@ const selectDemo = async () => {
       break;
     case "5":
       await loadFireExt(page)
+      break;
+    case "6":
+      await quizBot(page);
       break;
     default:
       console.log("Invalid demo choice.")

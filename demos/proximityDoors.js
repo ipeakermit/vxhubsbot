@@ -47,7 +47,7 @@ const proximityDoors = async page => {
         let dist = posObj.distanceTo(doors[0].getAttribute('position'))
         if (dist < 2){doors_activated = true}
 
-        //console.log(` [User ${i+1}] distance: ${dist.toFixed(4)}`);
+        console.log(` [User ${i+1}] distance: ${dist.toFixed(4)}, pos: ${pos}`);
       });
 
       // Open the doors

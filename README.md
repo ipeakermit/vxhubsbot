@@ -10,6 +10,8 @@ Currently this bot is set up to run a number of demos specified below when start
 
 3. Slide deck: similar to image sequence but with 3d models loaded for each slide. Eventually the goal is to allow to user to place/save and control the slide transitions.
 
+4. Quiz: The bot will run a barebones webserver and drop a link to it in the hubs world. The quiz has three questions about nano materials. If a student correctly answers them all the bot will announce it in chat. This demonstrates how to link a hubs-bot to outside services and tools.
+
 
 ## Running the bot
 
@@ -25,6 +27,7 @@ Current demos
     3. Image sequence (?)
     4. Slide Deck (WIP)
     5. Fire Exit (?)
+    6. Quizbot
 ```
 
 

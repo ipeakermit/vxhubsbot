@@ -3,19 +3,35 @@ const PORT = 3000;
 import fs from 'fs'
 
 const ping = async (page, formData) => {
-  console.log(`ping, formData2 = ${formData[2]}`);
+  //console.log(`ping, formData2 = ${formData[2]}`);
+
+  // 0: f-name=dan
+  // 1: f-q1=0
+  // 2: f-q2=2
+  // 3: f-q3=3
 
   await page.evaluate((formData) => {
-    // // Bot speak function
-    if (formData[2] == "yes"){
-      let nameParam = formData[0].split("=");
 
-      // if (nameParam[1] = ""){
-      //   nameParam[1] = "A student"
-      // }
-      //todo: does a blank name break this?
-      console.log(`Bot says: ${nameParam[1]}, Correct!`)
-      window.APP.hubChannel.sendMessage(`${nameParam[1]}, Correct!`);
+    //get name
+    let printName = "a student"
+    let name = formData[0].split("=");
+    if (name.length > 1){
+      printName = name[1]
+      if (printName == ""){
+        printName = "A student"
+      }
+    }
+
+    //assess questions
+    let q1_right = (formData[1] == "f-q1=0")
+    let q2_right = (formData[2] == "f-q2=2")
+    let q3_right = (formData[3] == "f-q3=1")
+
+    
+    if (q1_right && q3_right && q2_right){
+      let message = `${printName} got all the questions correct!`
+      console.log(`Bot says: ${message}`)
+      window.APP.hubChannel.sendMessage(message);
     } else {
       console.log("result was not yes");
     }
@@ -23,10 +39,10 @@ const ping = async (page, formData) => {
   },(formData))
 }
 
-function assessQuestion(formData) {
-  console.log(`assert: ${(formData[1] == "q1=0")}`)
-  return (formData[1] == "q1=0")
-}
+// function assessQuestion(formData) {
+//   console.log(`assert: ${(formData[1] == "q1=0")}`)
+//   return (formData[1] == "q1=0")
+// }
 
 
 export const quizBot = async page => {
@@ -39,10 +55,9 @@ export const quizBot = async page => {
       })
       request.on('end', function() {
         let formData = body.split("&");
-        let result = assessQuestion(formData) ? "yes" : "no";
-        console.log(`result= ${result}`)
-
-        formData.push(result);
+        //let result = assessQuestion(formData) ? "yes" : "no";
+        //console.log(`result= ${result}`)s
+        //formData.push(result);
         for(var i in formData){
           console.log(`${i}: ${formData[i]}`)
         }
@@ -58,7 +73,7 @@ export const quizBot = async page => {
 
       
     } else {
-      console.log(`GET on path: ${request.path}`)
+      //console.log(`GET on path: ${request.path}`)
 
       var html = "";
       html = fs.readFileSync('./demos/quiz1.html')
@@ -84,18 +99,18 @@ export const quizBot = async page => {
     })
 
     // Load 2 doors and set positions
-    console.log("loading door models")
-    let quizes = loadAssetsFromURLs(['http://codi15.dyndns.org:8080/', 'http://codi15.dyndns.org:8080/'])
+    console.log("loading quizes")
+    let quizes = loadAssetsFromURLs(['http://codi15.dyndns.org:8080/'])//, 'http://codi15.dyndns.org:8080/'])
     quizes[0].setAttribute('scale', '3 3 3')
-    quizes[1].setAttribute('scale', '3 3 3')
+    // quizes[1].setAttribute('scale', '3 3 3')
     quizes[0].setAttribute('position', '1.80 1 -19.5')
-    quizes[1].setAttribute('position', '8.00 1 -19.5')
+    // quizes[1].setAttribute('position', '8.00 1 -19.5')
     quizes[0].setAttribute('rotation', '0 0 0')
-    quizes[1].setAttribute('rotation', '0 0 0')
+    // quizes[1].setAttribute('rotation', '0 0 0')
   })
 
   //create quiz results bar
-  // cubes = await page.evaluate(() => {
+  // cubes = await page.evaluate(() => {S
 
   //   // Function to load assets
   //   const loadAssetsFromURLs = URLs => URLs.map(src => {

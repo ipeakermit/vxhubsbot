@@ -15,7 +15,7 @@ const start = async url => {
   parsedUrl.searchParams.set('bot', 'true')
 
   // Load the room
-  console.log('Bot joining room')
+  console.log(`Bot joining room with URL: ${url}`)
   await page.goto(parsedUrl.toString(), { waitUntil: 'domcontentloaded' })
   await page.waitForFunction(() => NAF.connection.isConnected())
 

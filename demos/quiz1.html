@@ -8,33 +8,168 @@
         <div style="max-width: 500px;min-width: 300px;max-height:700px;border-radius: 20px;padding: 20px;box-shadow:  20px 20px 60px #bebebe,-20px -20px 60px #ffffff;">
 			<h1 style="margin: 0px;">Quiz</h1>
             <h3 style="margin-top: 0px;">Classicfication of Nanomaterials</h3>
-            <form method="post" action="http://codi15.dyndns.org:8080/" style="margin-bottom: 0px;">
-                <div style="display: flex;">
-                    <label for="name" style="margin-right: 10px;">Your name</label>
-                    <input id="name" name="name" type="text" placeholder="student" value="student"/>
-                </div>  
                 <br/>
 				
-				<h3>Question 1:</h3>
-                <br/>
-                <div style="display: flex; justify-content: center;">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/C60_Molecule.svg/1024px-C60_Molecule.svg.png" alt="bucky-img" style="height:200px">
+                <div id="slide1">
+                    <h3>Question 1:</h3>
+                    <br/>
+                    <div style="display: flex; justify-content: center;">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/C60_Molecule.svg/1024px-C60_Molecule.svg.png" alt="bucky-img" style="height:200px">
+                    </div>
+                    <br/>
+                    <label for="q1">What kind of nanomaterial is this?</label>
+                    <select id="q1" name="q1">
+                      <option value="0">0D</option>
+                      <option value="1">1D</option>
+                      <option value="2">2D</option>
+                      <option value="3">3D</option>
+                    </select>
+                    <br/>
+                    
+                    <div style="display: flex; justify-content: end; margin-top: 20px;">
+                        <input type="submit" value="next" id="q1-next"/>
+                    </div>
                 </div>
-				<br/>
-                <label for="q1">What kind of nano material is this?</label>
-                <select id="q1" name="q1">
-                  <option value="0">0D</option>
-                  <option value="1">1D</option>
-                  <option value="2">2D</option>
-                  <option value="3">3D</option>
-                </select>
-				<br/>
+                <div id="slide2" style="display:none">
+                    <h3>Question 2:</h3>
+                    <br/>
+                    <div style="display: flex; justify-content: center;">
+                        <img src="https://www.researchgate.net/publication/336944382/figure/fig1/AS:820634670100480@1572665960153/Exemplative-ball-and-stick-model-of-a-portion-of-graphene-sheet-where-carbons-atoms-are.png" alt="todo" style="height:200px">
+                    </div>
+                    <br/>
+                    <label for="q2">What kind of nanomaterial is this?</label>
+                    <select id="q2" name="q2">
+                      <option value="0">0D</option>
+                      <option value="1">1D</option>
+                      <option value="2">2D</option>
+                      <option value="3">3D</option>
+                    </select>
+                    <br/>
+                    
+                    <div style="display: flex; justify-content: end; margin-top: 20px;">
+                        <input type="submit" value="next" id="q2-next"/>
+                    </div>
+                </div>
+                <div id="slide3" style="display:none">
+                    <h3>Question 3:</h3>
+                    <br/>
+                    <div style="display: flex; justify-content: center;">
+                        <img src="https://scx2.b-cdn.net/gfx/news/2016/57d1575f1dd5b.jpg" alt="bucky-img" style="height:200px">
+                    </div>
+                    <br/>
+                    <label for="q3">What kind of nanomaterial is this?</label>
+                    <select id="q3" name="q3">
+                      <option value="0">0D</option>
+                      <option value="1">1D</option>
+                      <option value="2">2D</option>
+                      <option value="3">3D</option>
+                    </select>
+                    <br/>
+                    
+                    <div style="display: flex; justify-content: end; margin-top: 20px;">
+                        <input type="submit" value="next" id="q3-next"/>
+                    </div>
+                </div>
+                <div id="slide4" style="display:none">
+                    <h3>Sumbit answers</h3>
+                    <div style="display: flex;">
+                        <label for="name" style="margin-right: 10px;">Your name</label>
+                        <input id="input-name" name="name" type="text" placeholder="student" value="student"/>
+                    </div>  
+                    <form id="final"  method="post" action="http://codi15.dyndns.org:8080/">
+                        <div style="display: none" >
+                            <input id="f-name" name="f-name" type="text" />
+                            <input id="f-q1" name="f-q1" type="text" />
+                            <input id="f-q2" name="f-q2" type="text" />
+                            <input id="f-q3" name="f-q3" type="text" />
+                        </div>
+            
+            
+                        <input type="submit" value="Submit" id="f-submitt"/>
+                    </form>
+                </div>
 				
-                <div style="display: flex; justify-content: end; margin-top: 20px;">
-				    <input type="submit" value="Submit" />
-                </div>
-            </form>
         </div>
         </div>
+
+
+
+        
+        <script>
+
+            let answers = []
+
+            //input listen
+            const input_name = document.querySelector('#input-name');
+            const input_q1 = document.querySelector('#q1');
+            const input_q2 = document.querySelector('#q2');
+            const input_q3 = document.querySelector('#q3');
+
+            // buttons
+            const q1_next = document.querySelector('#q1-next');
+            const q2_next = document.querySelector('#q2-next');
+            const q3_next = document.querySelector('#q3-next');
+
+            //final answers
+            const f_name = document.querySelector('#f-name');
+            const f_q1 = document.querySelector('#f-q1');
+            const f_q2 = document.querySelector('#f-q2');
+            const f_q3 = document.querySelector('#f-q3');
+
+
+            window.addEventListener('load', (event) => {
+                console.log("quiz ready.")
+            });
+
+            // load slide 2
+            q1_next.addEventListener('click', () => {
+                console.log("next please")
+                //save values
+                //f_name.value = input_name.value
+                f_q1.value = input_q1.value
+
+                //move to next q
+                let thisSlide = document.querySelector('#slide1')
+                let nextSlide = document.querySelector('#slide2')
+
+                thisSlide.style.display = "none"
+                nextSlide.style.display = "block"
+            });
+
+            // load slide 3
+            q2_next.addEventListener('click', () => {
+                console.log("next please")
+                //save values
+                //f_name.value = input_name.value
+                f_q2.value = input_q2.value
+
+                //move to next q
+                let thisSlide = document.querySelector('#slide2')
+                let nextSlide = document.querySelector('#slide3')
+
+                thisSlide.style.display = "none"
+                nextSlide.style.display = "block"
+            });
+
+            // load submit slide
+                q3_next.addEventListener('click', () => {
+                console.log("next please")
+                //save values
+                //f_name.value = input_name.value
+                f_q3.value = input_q3.value
+
+                //move to next q
+                let thisSlide = document.querySelector('#slide3')
+                let nextSlide = document.querySelector('#slide4')
+
+                thisSlide.style.display = "none"
+                nextSlide.style.display = "block"
+            });
+            
+            input_name.addEventListener('change', () => {
+                console.log(input_name.value)
+                f_name.value = input_name.value
+            });
+        </script>
     </body>
 </html>
